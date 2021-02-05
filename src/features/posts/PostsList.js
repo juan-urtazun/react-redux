@@ -14,7 +14,7 @@ export const PostList = () => {
   const postStatus = useSelector((state) => state.posts.status)
 
   useEffect(() => {
-    if (postMessage === 'idle') {
+    if (postStatus === 'idle') {
       dispatch(fetchPosts())
     }
   }, [postStatus, dispatch])
