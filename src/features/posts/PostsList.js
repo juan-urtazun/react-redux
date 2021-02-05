@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { PostAuthor } from './PostAuthor'
@@ -9,6 +9,7 @@ import { ReactionButtons } from './ReactionButtons'
 import { selectAllPost, fetchPosts } from './postsSlice'
 
 export const PostList = () => {
+  const dispatch = useDispatch()
   const posts = useSelector(selectAllPost)
   const postStatus = useSelector((state) => state.posts.status)
 
