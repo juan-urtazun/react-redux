@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -6,10 +6,18 @@ import { PostAuthor } from './PostAuthor'
 import { TimeAgo } from './TimeAgo'
 import { ReactionButtons } from './ReactionButtons'
 
-import { selectAllPost } from './postsSlice'
+import { selectAllPost, fetchPosts } from './postsSlice'
 
 export const PostList = () => {
   const posts = useSelector(selectAllPost)
+  const postStatus = useSelector((state) => state.posts.status)
+
+  useEffect(() => {
+    if (postMessage === 'idle') {
+      dispatch(fetchPosts())
+    }
+  }, [postStatus, dispatch])
+
   // with slice we work on a posts array copy.
   const orderedPosts = posts
     .slice()
