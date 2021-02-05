@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit'
-import { act } from 'react-dom/test-utils'
 import { client } from '../../api/client'
 
 /* 
@@ -78,8 +77,8 @@ const postsSlice = createSlice({
 
 export const selectAllPost = (state) => state.posts.posts
 
-export const selectPostById = (state, postId) => {
-  state.posts.posts.find((post) => post.id === postId)
+export const selectPostById = (postId) => {
+  return (state) => state.posts.posts.find((post) => post.id === postId)
 }
 
 export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions
